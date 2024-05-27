@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:13:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2024/05/27 13:46:52 by ljerinec         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:57:28 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ class Ball
 			this.vy *= -1;
 		if (padLeft.gotHit(this.x, this.y, this.img.width, this.img.height) === true)
 		{
+			this.vx *= -1;
+			this.vy *= -1;
+			console.log("vx :", this.vx);
+			console.log("vy :", this.vy);
 			let angle = padLeft.getImpactPoint(this.y) * (Math.PI / 4);
 			let speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
 			this.vx = speed * Math.cos(angle);
@@ -39,10 +43,14 @@ class Ball
 		}
 		if (padRight.gotHit(this.x, this.y, this.img.width, this.img.height) === true)
 		{
+			this.vx *= -1;
+			this.vy *= -1;
 			let angle = padLeft.getImpactPoint(this.y) * (Math.PI / 4);
 			let speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
 			this.vx = speed * Math.cos(angle);
 			this.vy = speed * Math.sin(angle);
+			console.log("vx :", this.vx);
+			console.log("vy :", this.vy);
 		}
 	}
 
