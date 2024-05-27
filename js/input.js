@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:17:56 by ljerinec          #+#    #+#             */
-/*   Updated: 2024/05/23 10:02:56 by ljerinec         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:31:55 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ let KeyL = false;
 
 function keyPressed(t)
 {
+	console.log(t.code);
 	if (t.code == "KeyW")
 		keyW = true;
 	if (t.code == "KeyS")
@@ -25,7 +26,6 @@ function keyPressed(t)
 		KeyO = true;
 	if (t.code == "KeyL")
 		KeyL = true;
-	// console.log(t.code);
 }
 
 function keyReleased(t)

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 09:34:04 by ljerinec          #+#    #+#             */
-/*   Updated: 2024/05/27 10:45:50 by ljerinec         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:42:44 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class Pad
 		this.img = new Image();
 		this.img.src = src;
 		this.speed = 350
+		this.deviationMax = 45;
 	}
 
 	draw(ctx) {
@@ -37,14 +38,20 @@ class Pad
 
 	gotHit(ballX, ballY, ballH, ballW)
 	{
-		if (ballX < (this.x + this.img.width) && (ballX + ballW) > this.x
-			&& ballY < this.y + (this.img.height)
+		if (ballX < (this.x + this.img.width)
+			&& (ballX + ballW) > this.x
+			&& ballY < (this.y + this.img.height)
 			&& (ballY + ballH) > this.y)
 		{
-			console.log("hit");
 			return (true);
 		}
 		return (false);
+	}
+
+	getImpactPoint(ballY)
+	{
+		let impactPoint = (ballY - this.y) - (this.img.height / 2);
+		return (impactPoint / (this.img.height / 2));
 	}
 
 	getX() {

@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 10:13:48 by ljerinec          #+#    #+#             */
-/*   Updated: 2024/05/27 10:43:12 by ljerinec         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:46:52 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,32 @@ class Ball
 		this.img.src = src;
 		this.x = x;
 		this.y = y;
-		this.vx = -200;
+		this.vx = -400;
 		this.vy = 50;
-		this.vector = 1;
 	}
 
 	update(dt)
 	{
 		this.x += this.vx * dt;
 		this.y += this.vy * dt;
-		// console.log(canvas.clientWidth);
 		if (this.x > canvas.clientWidth || this.x + this.img.width < 0)
 			this.reset();
 		if (this.y + this.img.height > canvas.height || this.y < 0)
 			this.vy *= -1;
-		if (padLeft.gotHit(this.x, this.y) === true || padRight.gotHit(this.x, this.y) === true)
-			this.vx *= -1;
+		if (padLeft.gotHit(this.x, this.y, this.img.width, this.img.height) === true)
+		{
+			let angle = padLeft.getImpactPoint(this.y) * (Math.PI / 4);
+			let speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+			this.vx = speed * Math.cos(angle);
+			this.vy = speed * Math.sin(angle);
+		}
+		if (padRight.gotHit(this.x, this.y, this.img.width, this.img.height) === true)
+		{
+			let angle = padLeft.getImpactPoint(this.y) * (Math.PI / 4);
+			let speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+			this.vx = speed * Math.cos(angle);
+			this.vy = speed * Math.sin(angle);
+		}
 	}
 
 	draw(ctx)

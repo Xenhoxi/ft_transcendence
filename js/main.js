@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:45:05 by ljerinec          #+#    #+#             */
-/*   Updated: 2024/05/25 23:43:35 by ljerinec         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:34:14 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ let padLeft;
 let padRight;
 let ball;
 
-function start()
+function main()
 {
 	load();
 	console.log("Loaded !");
@@ -65,4 +65,4 @@ function draw(ctx)
 	ball.draw(ctx);
 }
 
-start();
+main();
