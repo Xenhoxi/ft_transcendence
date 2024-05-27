@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 09:34:04 by ljerinec          #+#    #+#             */
-/*   Updated: 2024/05/23 10:17:56 by ljerinec         ###   ########.fr       */
+/*   Updated: 2024/05/27 10:45:50 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,25 @@ class Pad
 	goDown(dt) {
 		if (this.y + (this.speed * dt) <= canvas.clientHeight - 120)
 			this.y += (this.speed * dt);
+	}
+
+	gotHit(ballX, ballY, ballH, ballW)
+	{
+		if (ballX < (this.x + this.img.width) && (ballX + ballW) > this.x
+			&& ballY < this.y + (this.img.height)
+			&& (ballY + ballH) > this.y)
+		{
+			console.log("hit");
+			return (true);
+		}
+		return (false);
+	}
+
+	getX() {
+		return (this.x);
+	}
+
+	getY() {
+		return (this.y);
 	}
 }

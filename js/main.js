@@ -6,7 +6,7 @@
 /*   By: ljerinec <ljerinec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:45:05 by ljerinec          #+#    #+#             */
-/*   Updated: 2024/05/23 10:17:58 by ljerinec         ###   ########.fr       */
+/*   Updated: 2024/05/25 23:43:35 by ljerinec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ let interval;
 
 let padLeft;
 let padRight;
+let ball;
 
 function start()
 {
@@ -41,6 +42,7 @@ function load()
 	document.addEventListener("keyup", keyReleased, false);
 	padLeft = new Pad("./img/pad.png", 0, (canvas.clientHeight / 2) - (120 / 2));
 	padRight = new Pad("./img/pad.png", canvas.clientWidth - 20, (canvas.clientHeight / 2) - (120 / 2));
+	ball = new Ball("./img/ball.png", canvas.clientWidth / 2 - 7, canvas.clientHeight / 2 - 7);
 }
 
 function update(dt)
@@ -53,12 +55,14 @@ function update(dt)
 		padRight.goUp(dt);
 	if (KeyL)
 		padRight.goDown(dt);
+	ball.update(dt);
 }
 
 function draw(ctx)
 {
 	padLeft.draw(ctx);
 	padRight.draw(ctx);
+	ball.draw(ctx);
 }
 
 start();
