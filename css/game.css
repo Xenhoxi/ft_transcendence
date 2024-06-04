@@ -1,9 +1,0 @@
-body {
-    text-align: center;
-    background: url("../img/background.jpg");
-    background-size: cover;
-}
-
-#game {
-    background-color: rgb(0, 0, 0);
-}
