@@ -1,0 +1,67 @@
+services:
+  web:
+    container_name: web
+    build:
+      context: ./containers/transcendence
+      dockerfile: Dockerfile.prod
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+    environment:
+      - DATABASE_HOST=postgres
+      - DATABASE_USER=neo
+      - DATABASE_PASSWORD=dansmatrix
+      - DATABASE_NAME=tr_database
+    env_file:
+      - ./.prod.env
+    depends_on:
+      - postgres
+    networks:
+      - transcendence
+
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=tr_database
+      - POSTGRES_USER=neo
+      - POSTGRES_PASSWORD=dansmatrix
+    env_file:
+      - ./.prod.env
+    networks:
+      - transcendence
+
+  nginx:
+    container_name: nginx
+    build: ./containers/nginx
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+    ports:
+      - 4443:4443
+    depends_on:
+      - web
+    networks:
+      - transcendence
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    expose:
+      - 6379
+    networks:
+      - transcendence
+    depends_on:
+      - web
+    volumes:
+      - redis_volume:/data
+
+networks:
+  transcendence:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  static_volume:
+  redis_volume:

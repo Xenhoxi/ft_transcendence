@@ -1,0 +1,95 @@
+/* From Uiverse.io by Shoh2008 */
+.loader {
+  position: relative;
+  height: 40px;
+  width: 6px;
+  color: #000000;
+  animation: paddles 0.75s ease-out infinite;
+}
+
+.loader:before {
+  content: "";
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 15px;
+  width: 12px;
+  height: 12px;
+  background-color: #258800;
+  border-radius: 50%;
+  animation: ballbounce 0.6s ease-out infinite;
+}
+
+@keyframes paddles {
+  0% {
+    box-shadow: -25px -10px, 25px 10px
+  }
+
+  50% {
+    box-shadow: -25px 8px, 25px -10px
+  }
+
+  100% {
+    box-shadow: -25px -10px, 25px 10px
+  }
+}
+
+@keyframes ballbounce {
+  0% {
+    transform: translateX(-20px) scale(1, 1.2)
+  }
+
+  25% {
+    transform: scale(1.2, 1)
+  }
+
+  50% {
+    transform: translateX(15px) scale(1, 1.2)
+  }
+
+  75% {
+    transform: scale(1.2, 1)
+  }
+
+  100% {
+    transform: translateX(-20px)
+  }
+}
+
+.button_off
+{
+    pointer-events: none;
+    opacity: 0;
+}
+
+#continue{
+    position: absolute; /* Allows the button to be positioned */
+    left: 50%;          /* Horizontal center */
+    top: 50%;           /* Vertical center */
+    transform: translate(-50%, -50%); /* Adjust for button's size */
+    z-index: 1000;
+}
+
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center elements horizontally */
+}
+
+
+#players_container {
+    display: flex;
+    justify-content: space-between; /* Distributes players evenly */
+    width: 100%; /* Full width */
+    margin: 20px 0; /* Space between navbar and players */
+}
+
+#player1, #player2 {
+    width: 45%; /* Or any percentage that fits your design */
+    height: 100px; /* Set a height for the player spans */
+    text-align: center; /* Center the text */
+    font-size: 55px;
+    line-height: 100px; /* Vertically center the text */
+}

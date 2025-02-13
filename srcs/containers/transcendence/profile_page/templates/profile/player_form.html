@@ -1,0 +1,89 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="up-title">
+        <h1>Profile</h1>
+    </div>
+    {% include "authentication/navbar.html" %}
+
+    <h1>Modify</h1>
+
+    <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/social.css' %}">
+
+    <form id="profile_form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <br><br>
+        <input type="file" id="newpp" class="hidden_input" name="profile_picture" accept=".png, .jpg, .jpeg">
+        <label for="newpp" id="imglabel">
+            {% if player.profile_picture_url %}
+                <img class="user_profile_picture" src="{{ player.profile_picture_url }}" alt="">
+            {% elif player.profile_picture %}
+                <img class="user_profile_picture" src="{{ player.profile_picture.url }}" alt="">
+            {% endif %}
+        </label>
+        <br><br>
+        <div class="flex">
+            <label>
+                {{ registration_form.username }}
+                <span>Username</span>
+                <br><br>
+            </label>
+            <label>
+                {{ registration_form.email }}
+                <span>Email</span>
+                <br><br>
+            </label>
+            <label>
+                {{ registration_form.new_password }}
+                <span>New password</span>
+                <br><br>
+            </label>
+            <label>
+                {{ registration_form.new_password_repeat }}
+                <span>Repeat new password</span>
+                <br><br>
+            </label>
+        </div>
+        <button class="c-button c-button--gooey" type="submit" id="profile_submit"> Save
+          <div class="c-button__blobs">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </button>
+    </form>
+
+    {% if has_2fa %}
+        <!-- If user has 2FA enabled, show a delete button -->
+        <button id="delete_2fa" class="c-button c-button--gooey" type="button">Delete Two-Factor Authentication
+          <div class="c-button__blobs">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </button>
+    {% else %}
+        <!-- If user does not have 2FA enabled, show the setup button -->
+        <button id="setup_2fa" class="c-button c-button--gooey" type="button">Set up Two-Factor Authentication
+          <div class="c-button__blobs">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </button>
+    {% endif %}
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+          <feBlend in="SourceGraphic" in2="goo"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+    <div id="snackbar" class="snackbar_visibility">Error</div>
+
+{% endblock %}

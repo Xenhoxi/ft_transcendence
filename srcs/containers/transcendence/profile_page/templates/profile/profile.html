@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="up-title">
+        <h1>Profile</h1>
+    </div>
+
+{% include "authentication/navbar.html" %}
+{% include 'profile/profile_page.html' %}
+
+{% endblock %}

@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    /*background-color: #f4f4f4;*/
+    margin: auto;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /*margin: 0;*/
+}
+
+.bracket {
+    display: flex; /* Align semi-finals and finals-group side by side */
+    align-items: center; /* Center items vertically */
+    width: 600px;
+}
+
+.semi-finals {
+    display: flex;
+    flex-direction: column; /* Stack matches vertically */
+    gap: 20px; /* Space between matches */
+    position: relative; /* For positioning the connecting line */
+}
+
+.match {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #333;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+    position: relative; /* For the lines */
+}
+
+.team {
+    margin: 5px 0;
+}
+
+.box {
+    background-color: #e0e0e0; /* Light grey for player boxes */
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.semi-final {
+    border-color: #FF9800; /* Orange for finals */
+}
+
+.final {
+	border-color: #4CAF50; /* Green for semi-finals */
+}
+
+.third-place {
+    border-color: #F44336; /* Red for 3rd place */
+}
+
+.finals-group {
+    display: flex; /* Align finals and second-finals side by side */
+    flex-direction: row; /* Align side by side finals and second-finals horizontaly */
+    gap: 20px; /* Space between finals and second-finals */
+    margin-left: 50px; /* Space to center it next to the semi-finals */
+}
+
+/* Vertical line connecting the two semi-finals */
+.semi-finals::after {
+    content: '';
+    position: absolute;
+    right: -25px; /* Position the line slightly outside the box */
+    top: 50%; /* Start from the middle of the first semi-final */
+    transform: translateY(-50%); /* Center the line */
+    width: 2px; /* Width of the line */
+    height: 53%; /* Adjust height as necessary to cover both matches */
+    background-color: #4CAF50; /* Color of the line (same as semi-final border) */
+}
+
+/* Horizontal lines connecting the semi-finals to the vertical line */
+.match.semi-final::after {
+    content: '';
+    position: absolute;
+    left: 101%; /*Position to the right of the match box */
+    width: 25px; /* Width of the horizontal line */
+    height: 2px; /* Height of the line */
+    background-color: #4CAF50; /* Color of the line */
+    top: 50%; /* Center the line vertically */
+    transform: translateY(-50%); /* Adjust position to center */
+}
+
+.match.final::after {
+    content: '';
+    position: absolute;
+    right: 100%; /*Position to the right of the match box */
+    width: 27px; /* Width of the horizontal line */
+    height: 2px; /* Height of the line */
+    background-color: #4CAF50; /* Color of the line */
+    top: 50%; /* Center the line vertically */
+    transform: translateY(-50%); /* Adjust position to center */
+}
+
+.match:first-child::after {
+    top: 50%; /* Adjust for the first semi-final */
+}
+
+.match:last-child::after {
+    top: 50%; /* Adjust for the second semi-final */
+}
+
+.p.vs {
+	margin: 2px;
+}
+
+#lobby_div {
+    display: flex;
+}

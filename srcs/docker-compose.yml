@@ -1,0 +1,52 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: tr_database
+      POSTGRES_USER: neo
+      POSTGRES_PASSWORD: dansmatrix
+    env_file: .env
+    networks:
+      - transcendence
+  web:
+    container_name: web
+    build: ./containers/transcendence
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      DJANGO_SETTINGS_MODULE: transcendence.settings
+      DATABASE_HOST: postgres
+      DATABASE_USER: neo
+      DATABASE_PASSWORD: dansmatrix
+      DATABASE_NAME: tr_database
+    volumes:
+      - ./containers/transcendence:/usr/src/django
+      - static_volume:/home/app/web/staticfiles
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env
+    depends_on:
+      - postgres
+    networks:
+      - transcendence
+  redis:
+    container_name: redis
+    image: redis:latest
+    expose:
+      - 6379
+    networks:
+      - transcendence
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  static_volume:
+  redis_volume:
+
+networks:
+  transcendence:
+    driver: bridge

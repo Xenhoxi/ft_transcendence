@@ -1,0 +1,163 @@
+.history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 70vh;
+    width: 100%;
+    font-size: clamp(16px, 2vw, 28px);
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin: auto;
+    max-height: clamp(5vh, 100vh, 50vh);
+}
+
+.history .title {
+    margin: 0;
+    width: 82%;
+    position: relative;
+    text-align: center;
+    font-size: clamp(18px, 2.5vw, 36px);
+}
+
+.match {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    background-color: whitesmoke;
+    padding: 10px;
+}
+
+.user_block {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15%;
+    padding: 7%;
+}
+
+.vs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15%;
+    padding: 7%;
+}
+
+.date, .duration {
+    font-size: clamp(14px, 1.5vw, 24px);
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+}
+
+.date {
+    top: 10px;
+}
+
+.duration {
+    bottom: 10px;
+}
+
+.user {
+    text-align: center;
+    font-size: clamp(16px, 2vw, 28px);
+}
+
+.win_title, .lose_title {
+    position: absolute;
+    top: -1px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    z-index: 1;
+    font-size: clamp(16px, 2vw, 28px);
+}
+
+.win_title {
+    color: yellowgreen;
+}
+
+.lose_title {
+    color: pink;
+}
+
+#user_lose {
+    color: pink;
+}
+
+#user_win {
+    color: yellowgreen;
+    font-size: clamp(16px, 2vw, 28px);
+}
+
+.match {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.tournament_history_block {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.player_block {
+    display: flex;
+    flex-direction: column; /* Stacks ranking on top of name */
+    align-items: center; /* Centers the content */
+    margin: 10px; /* Space around each block */
+}
+
+.winner .ranking,
+.winner .name {
+    font-size: clamp(24px, 2vw, 32px);
+    color: yellowgreen; /* Winner's title and name color */
+}
+
+.loser .ranking,
+.loser .name {
+    color: pink; /* Loser's title and name color */
+}
+
+.ranking {
+    font-size: clamp(18px, 2vw, 28px);
+    font-weight: bold;
+}
+
+.name {
+    font-size: clamp(16px, 2vw, 26px);
+    text-align: center;
+}
+
+.lose_row {
+    display: flex;
+    justify-content: center; /* Center the losers horizontally */
+    gap: 60px; /* Add space between the loser blocks */
+    width: 100%;
+}
+
+#date {
+    position: absolute;
+    top: 10px; /* Top-right corner positioning */
+    right: 20px;
+    font-size: clamp(14px, 1.5vw, 24px);
+    color: gray;
+}

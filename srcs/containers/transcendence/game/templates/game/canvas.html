@@ -1,0 +1,28 @@
+{% load static %}
+
+    <div class="up-title">
+        <h1>Multiversus</h1>
+    </div>
+
+{% include "authentication/navbar.html" %}
+<link id='lobby_css' rel="stylesheet" href="{% static 'css/lobby.css' %}">
+<link rel="stylesheet" href="{% static 'css/loading_opponent.css' %}">
+<div class="game" id="gamecanvas">
+    <div class="players" id="players_container">
+        <span id="player1"></span>
+        <span id="player2"></span>
+    </div>
+    <button id="continue" class="button_off">Continue</button>
+    <div class="lobby" id="lobby_div">
+        <div class="button_div" id="option_div">
+            <button id="btn_tournament" class="button">Tournaments</button>
+            <button id="btn_matchmaking_1v1" class="button">MatchMaking 1v1</button>
+            <button id="btn_match_ai" class="button">Match vs AI</button>
+            <button id="btn_match_local" class="button">Local match</button>
+        </div>
+        <h1 id="mode_name">MatchMaking 1v1</h1>
+        <div id="lobby_content">
+            {% include 'game/1v1_match.html' %}
+        </div>
+    </div>
+</div>

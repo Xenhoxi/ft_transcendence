@@ -1,0 +1,8 @@
+{% load static %}
+
+<div class="history">
+    <h1 class="title"> Tournament Games </h1>
+    {% for history in game %}
+            {% include "profile/victory_tournament.html" %}
+    {% endfor %}
+</div>

@@ -1,0 +1,41 @@
+{% load static %}
+
+<div class="match">
+    <div class="user_block">
+        {% if not history.User1.ff %}
+            <span class="win_title"> VICTORY </span>
+            <span class="user" id="user_win">
+        {% else %}
+            <span class="lose_title"> DEFEAT </span>
+            <span class="user" id="user_lose">
+        {% endif %}
+            {{ history.User1.username }}
+        </span>
+    </div>
+    {% if not history.User1.ff %}
+        <span id="user_win">{{ history.User1.score }}</span>
+    {% else %}
+        <span id="user_lose">ff</span>
+    {% endif %}
+    <div class="vs">
+        <span class="date">{{ history.User1.date }}</span>
+        <span>VS</span>
+        <span class="duration">{{ history.User1.time }}</span>
+    </div>
+    {% if not history.User1.ff %}
+        <span id="user_lose">ff</span>
+    {% else %}
+        <span id="user_win">{{ history.User2.score }}</span>
+    {% endif %}
+    <div class="user_block">
+        {% if not history.User1.ff %}
+            <span class="lose_title"> DEFEAT </span>
+            <span class="user" id="user_lose">
+        {% else %}
+            <span class="win_title"> VICTORY </span>
+            <span class="user" id="user_win">
+        {% endif %}
+            {{ history.User2.username }}
+        </span>
+    </div>
+</div>

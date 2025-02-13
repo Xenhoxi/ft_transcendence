@@ -1,0 +1,48 @@
+{% load static %}
+<link id='lobby_css' rel="stylesheet" href="{% static 'css/tournament_bracket.css' %}">
+<div class="bracket">
+    <div class="semi-finals">
+        <div class="match semi-final">
+            <p>Semi-final 1</p>
+            <div class="team box" >{{ lobby.P1.username }}</div>
+            <div class="team box">{{ lobby.P2.username }}</div>
+        </div>
+        <div class="match semi-final">
+            <p>Semi-final 2</p>
+            <div class="team box">{{ lobby.P3.username }}</div>
+            <div class="team box">{{ lobby.P4.username }}</div>
+        </div>
+    </div>
+    <div class="finals-group">
+        <div class="finals">
+            <div class="match final">
+                <p>Final Match</p>
+                {% if lobby.Winner_SF1 %}
+                <div class="team box">{{ lobby.Winner_SF1 }}</div>
+                {% else %}
+                <div class="team box">...</div>
+                {% endif %}
+                {% if lobby.Winner_SF2 %}
+                <div class="team box">{{ lobby.Winner_SF2 }}</div>
+                {% else %}
+                <div class="team box">...</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="second-finals">
+            <div class="match third-place">
+                <p>Third place match</p>
+                {% if lobby.Loser_SF1 %}
+                <div class="team box">{{ lobby.Loser_SF1 }}</div>
+                {% else %}
+                <div class="team box">...</div>
+                {% endif %}
+                {% if lobby.Loser_SF2 %}
+                <div class="team box">{{ lobby.Loser_SF2 }}</div>
+                {% else %}
+                <div class="team box">...</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

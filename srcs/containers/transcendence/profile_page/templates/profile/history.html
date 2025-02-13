@@ -1,0 +1,19 @@
+{% load static %}
+
+{% csrf_token %}
+
+<link rel="stylesheet" href="{% static 'css/history.css' %}">
+<button id="normal_games_btn" class="button">Normal games</button>
+<button id="tournament_games_btn" class="button">Tournament</button>
+<div class="history_div" id="full_history">
+    <div class="history">
+        <h1 class="title"> Normal Games </h1>
+        {% for history in game %}
+            {% if history.User1.ff or history.User2.ff %}
+                {% include "profile/victory_ff_block.html" %}
+            {% else %}
+                {% include "profile/victory_block.html" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

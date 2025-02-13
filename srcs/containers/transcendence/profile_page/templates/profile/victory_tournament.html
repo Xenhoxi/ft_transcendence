@@ -1,0 +1,27 @@
+{% load static %}
+
+<div class="match">
+    <div class="tournament_history_block">
+        <div class="player_block winner">
+            <span class="ranking">1st</span>
+            <span class="name">{{ history.First }}</span>
+        </div>
+
+        <div class="lose_row">
+            <div class="player_block loser">
+                <span class="ranking">2nd</span>
+                <span class="name">{{ history.Second }}</span>
+            </div>
+            <div class="player_block loser">
+                <span class="ranking">3rd</span>
+                <span class="name">{{ history.Third }}</span>
+            </div>
+            <div class="player_block loser">
+                <span class="ranking">4th</span>
+                <span class="name">{{ history.Fourth }}</span>
+            </div>
+        </div>
+
+        <span id="date">{{ history.date }}</span>
+    </div>
+</div>

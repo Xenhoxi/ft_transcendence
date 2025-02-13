@@ -1,0 +1,12 @@
+{% load static %}
+
+<div class="history">
+    <h1 class="title"> Normal Games </h1>
+    {% for history in game %}
+        {% if history.User1.ff or history.User2.ff %}
+            {% include "profile/victory_ff_block.html" %}
+        {% else %}
+            {% include "profile/victory_block.html" %}
+        {% endif %}
+    {% endfor %}
+</div>

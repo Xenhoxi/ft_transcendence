@@ -1,0 +1,13 @@
+{% extends 'two_factor/_base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div id="login_div">
+
+        {% include 'accounts/sign_in.html' %}
+
+    <div id="error-message" style="color: red;"></div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,121 @@
+.button {
+    flex: 1;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+    margin: 0.4%;
+}
+
+.button:hover,
+.button:focus {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.button:hover {
+    transform: translateY(-1px);
+}
+
+.button:active {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+}
+
+#gamecanvas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+#lobby_div {
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 80%;
+    max-height: 70%;
+    max-width: 80%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid black;
+    position: relative;
+    background-color: white;
+}
+
+.button_div {
+    display: flex;
+    margin: 0.5%;
+}
+
+#lobby_content {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 450px) {
+    #lobby_content {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+#lobby_content div
+{
+    flex: 0 0 calc(33.333% - 10px); /* Chaque div prend un tiers de la largeur */
+    margin: 5px;
+}
+
+#cancel_research,
+#start_research {
+    position: absolute;
+    bottom: 10px; /* 10px from the bottom */
+    left: 50%; /* Start the button from the center */
+    transform: translateX(-50%); /* Adjust its position to center it horizontally */
+    margin: 0; /* Reset margin to avoid any unexpected offsets */
+}
+
+.center_div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player_div {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   margin-left: 10%;
+   margin-right: 10%;
+   width: 200%;
+}
+
+#loading {
+    margin: auto;
+}

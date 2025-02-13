@@ -1,0 +1,541 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    background-image: url("../js/images/background.gif");
+    background-size: cover;
+}
+
+.canvasdivs
+{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.canvasdivs.on
+{
+    top :10%;
+    opacity: 1;
+    pointer-events: auto;
+    transition: .4s ease;
+}
+
+#canv
+{
+    position: relative;
+    height: 30%;
+    width: 80%;
+    max-width: 90%;
+    max-height: 40%;
+    min-width: 60%;
+    min-height: 15%;
+    position: relative;
+    right:0%;
+    /*background-image: url("../js/images/back.png");*/
+    background-size:cover;
+    border: 1px black;
+    z-index: 1;
+}
+
+
+
+.popupcontainer
+{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.popupcontainer.on
+{
+    opacity: 1;
+    pointer-events: auto;
+    transition: .4s ease;
+}
+
+
+.popupcontainer .popupbox
+{
+    width: 500px;
+    background-color: #8b6242;
+    border-radius: 8px;
+    box-shadow: 0 0 10 rgba(0, 0, 0,.1);
+    padding: 30px;
+    transform: scale(0);
+}
+
+.popupcontainer.on .popupbox
+{
+    transform: scale(1);
+    transition: .4s ease;
+    transition-delay: .25s;
+}
+
+.popupbox h1
+{
+    color: black;
+    line-height: 1;
+}
+
+.popupbox p 
+{
+    text-align: left;
+    font-size: 22px;
+    color: black; 
+    margin: 12px 0 20px;
+}
+
+.popupcontainer label .popuptext
+{
+    position: relative;
+    top: 10px;
+    resize: none;
+    border-radius: 2px;
+    border: none;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #fff;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #362315;
+    text-align: left;
+    outline: none;
+    justify-content: center;
+    align-self: center;
+    font-size: 18px;
+}
+
+.popupbox label .popuptext + span
+{
+    color: rgba(0, 0, 0,.5);
+    cursor: text;
+    transition: 0.3s ease;
+    padding: 20px 05px 05px 10px;
+}
+
+.popupbox label #username + span
+{
+    position: absolute;
+    left: 31%;
+    top: 77px;
+}
+
+.popupbox label #Lusername + span
+{
+    position: absolute;
+    left: 31%;
+    top: 77px;
+}
+
+.popupbox label #Lusername:placeholder-shown + span
+{
+    top: 97px;
+    font-size:0.9em;
+}
+
+.popupbox label #username:placeholder-shown + span
+{
+    top: 97px;
+    font-size:0.9em;
+}
+
+.popupbox label #mail + span
+{
+    position: absolute;
+    left: 31%;
+    top: 147px;
+}
+
+.popupbox label #mail:placeholder-shown + span
+{
+    top: 171px;
+    font-size:0.9em;
+}
+
+.popupbox label #Password + span
+{
+    position: absolute;
+    left: 31%;
+    top: 225px;
+}
+
+.popupbox label #Password:placeholder-shown + span
+{
+    top: 245px;
+    font-size:0.9em;
+}
+
+.popupbox label #Password2 + span
+{
+    position: absolute;
+    left: 31%;
+    top: 147px;
+}
+
+.popupbox label #Password2:placeholder-shown + span
+{
+    top: 171px;
+    font-size:0.9em;
+}
+
+.popupbox label #RPassword + span
+{
+    position: absolute;
+    left: 31%;
+    top: 297px;
+}
+
+.popupbox label #RPassword:placeholder-shown + span
+{
+    top: 320px;
+    font-size:0.9em;
+}
+
+.popupbox .close 
+{
+    width: 10%;
+    height: 45px;
+    background-color: rgb(66, 28, 4);
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0,0 .1);
+    cursor: pointer;
+    color: antiquewhite;
+    font-weight: 500;
+}
+
+.popupbox #Rclose
+{
+    font-size: 20px;
+    position: relative;
+    bottom: 380px;
+    left: 310px;
+} 
+
+.popupbox #Lclose
+{
+    font-size: 20px;
+    position: relative;
+    bottom: 230px;
+    left: 310px;
+}
+
+.popupbox label .submit
+{
+    width: 30%;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: rgba(0, 0, 0,.1);
+    background-color: #5a371e;
+}
+
+.popupbox label #loginsubmit
+{
+    position: relative;
+    right: 25px;
+}
+
+.popupbox label #registersubmit
+{
+    position: relative;
+    right: 25px;
+}
+
+@keyframes pulsing
+{
+    0%
+    {
+        transform: scale(1);
+    }
+    50%
+    {
+        transform: scale(1.1);
+    }
+    100%
+    {
+        transform: scale(1);
+    }
+}
+
+/* navbar css */
+
+
+.navbar
+{
+    width: 100%;
+    list-style: none;
+    display: inline-block;
+    overflow: hidden;
+    background-color: pink;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0,0 .1);
+}
+
+.navbar a
+{
+    text-decoration: none;
+    color: white;
+    float:right;
+    padding: 10px 16px;
+
+}
+
+.navbar a:hover
+{
+    background-color: yellowgreen;
+}
+
+/* button */
+
+.popupboutton
+{
+    padding: 2% 5%;
+    height: 30%;
+    width: 20%;
+    min-width: 20%;
+    min-height: 30%;
+    border: solid black;
+    border-width: 5%;
+    outline: none;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0,0 .1);
+    font-size: 150%;
+    font-weight: 500;
+    margin: 15%;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 1;
+}
+
+.popupboutton.off
+{
+    margin: 0%;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#register
+{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin: 15%;
+    background-image: url("../js/images/staticregister.png");
+    background-size: cover;
+    color: #362315;
+    z-index: 1;
+}
+
+#registerhover
+{
+    background-image: url("../js/images/Register2.gif");
+    background-size: cover;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #362315;
+    z-index: 1;
+    animation: pulsing 1.2s ease 0s infinite normal forwards;
+}
+
+
+#login
+{
+    margin: 10%;
+    background-color: #8b6242;
+    color: #362315;
+}
+
+.api_button {
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+}
+
+.api_button:hover,
+.api_button:focus {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.api_button:hover {
+    transform: translateY(-1px);
+}
+
+.api_button:active {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+}
+
+
+.custom-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.custom-header {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.step-header {
+    font-size: 1.5rem;
+    margin-top: 30px;
+}
+
+.qr-code {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.qr-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.custom-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-label {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.custom-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.custom-error {
+    color: red;
+    margin-bottom: 15px;
+}
+
+.custom-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.custom-button:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+
+.button {
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+}
+
+.button:hover,
+.button:focus {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.button:hover {
+    transform: translateY(-1px);
+}
+
+.button:active {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+}
+
+.up-title {
+
+    width: 100%;
+    height: 50px;
+    background-color: pink;
+}
+
+.up-title h1{
+    padding:20px;
+    margin: 0px;
+}
+
+#game, #logout, #profile, #social{
+    color: black;
+}

@@ -1,0 +1,73 @@
+# MULTI-STAGE BUILD
+###########
+# BUILDER #
+###########
+
+FROM python:3.11.4-slim-buster as builder
+WORKDIR /usr/src/app
+
+
+# set environment variables
+# PYTHONDONTWRITEBYTECODE=1: Prevents Python from writing .pyc files to the disk.
+ENV PYTHONDONTWRITEBYTECODE 1
+###
+ENV PYTHONUNBUFFERED 1
+# PYTHONUNBUFFERED=1: Ensures that Python output is sent straight to the terminal (not buffered).
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc
+
+# lint (cleaning code)
+# RUN pip install --upgrade pip
+# RUN pip install flake8==6.0.0
+# COPY . /usr/src/app/
+# ignore webcodings/ && python3.12/ c'est des cons
+# RUN flake8 --ignore=E501,F401,E222,W292,F821 --exclude=.env,env,venv,.venv,pip,webcodings,python3.12,authentication,settings.py .
+
+COPY ./requirements.txt .
+# Uses pip wheel to create wheel files for the dependencies listed in requirements.txt and stores them in /usr/src/app/wheels.
+# If you’ve installed a Python package using pip, then chances are that a wheel has made the installation faster and more efficient.
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+
+
+#########
+# FINAL #
+#########
+
+# pull official base image
+FROM python:3.11.4-slim-buster
+
+# create directory for the app user
+RUN mkdir -p /home/app
+
+# create the app user
+RUN addgroup --system app && adduser --system --group app
+
+# create the appropriate directories (do this while you are still sudo i guess)
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/staticfiles
+WORKDIR $APP_HOME
+
+# install dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends netcat
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder /usr/src/app/requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install --no-cache /wheels/*
+
+# Copies the entrypoint.prod.sh script.
+# Removes any Windows carriage returns (\r). Pas necessaire(en comm pour le moment)
+# Makes the script executable.
+COPY ./entrypoint.prod.sh .
+# RUN sed -i 's/\r$//g'  $APP_HOME/entrypoint.prod.sh
+RUN chmod +x  $APP_HOME/entrypoint.prod.sh
+###
+
+# copy project
+COPY . $APP_HOME
+# donne les fichiers au nouveau user "app" et lance le script en tant que "app" par securite
+RUN chown -R app:app $APP_HOME
+USER app
+ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]
