@@ -15,5 +15,5 @@ With some features:
 <h2 align="center">INSTALLATION</h2>
 
 ```bash
-caca
+WIP
 ```
